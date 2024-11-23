@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'; // Importa Navigate para redirigir
 import DashboardHeader from './components/DashboardHeader';
 import DashboardFooter from './components/DashboardFooter';
 import DashboardMain from './components/DashboardMain';
@@ -9,39 +9,56 @@ import Proceso from './components/Proceso'; // Componente para mostrar el proces
 import Macroprocesos from './pages/Macroprocesos';
 import './styles/Global.css';
 
+// Componente para proteger las rutas
+function ProtectedRoute({ element }) {
+  const isAuthenticated = localStorage.getItem('authToken'); // Verifica si el token existe
+
+  // Si no está autenticado, redirige al login, sino muestra el componente solicitado
+  return isAuthenticated ? element : <Navigate to="/" replace />;
+}
+
 function App() {
   return (
     <Router>
       <Routes>
         {/* Ruta para Login */}
         <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
 
-        {/* Ruta para Dashboard */}
+        {/* Ruta para Dashboard - Protección con ProtectedRoute */}
         <Route
           path="/dashboard"
           element={
-            <>
-              <DashboardHeader />
-              <DashboardMain />
-              <DashboardFooter />
-            </>
+            <ProtectedRoute
+              element={
+                <>
+                  <DashboardHeader />
+                  <DashboardMain />
+                  <DashboardFooter />
+                </>
+              }
+            />
           }
         />
 
         {/* Ruta para la vista de cada opción seleccionada dentro del Dashboard */}
         <Route path="/dashboard/:opcion" element={
-          <>
-            <DashboardHeader />
-            <VistaOpcion /> {/* Mostrar la opción seleccionada */}
-            <DashboardFooter />
-          </>
+          <ProtectedRoute
+            element={
+              <>
+                <DashboardHeader />
+                <VistaOpcion /> {/* Mostrar la opción seleccionada */}
+                <DashboardFooter />
+              </>
+            }
+          />
         }>
           {/* Rutas para los procesos dentro de cada opción */}
-          <Route path=":proceso" element={<Proceso />} />
+          <Route path=":proceso" element={<ProtectedRoute element={<Proceso />} />} />
         </Route>
 
         {/* Ruta para otras páginas */}
-        <Route path="/Sistemas/Macroprocesos" element={<Macroprocesos />} />
+        <Route path="/Sistemas/Macroprocesos" element={<ProtectedRoute element={<Macroprocesos />} />} />
       </Routes>
     </Router>
   );
