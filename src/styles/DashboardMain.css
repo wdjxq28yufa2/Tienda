@@ -1,0 +1,139 @@
+/* Estilos para el contenedor principal del dashboard */
+.dashboard-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px;
+    background-color: #f4f7fc;
+    min-height: 30vh;
+    position: relative;
+    background-image: url('/images/fondo.jpg'); /* Imagen de fondo */
+    background-size: cover;
+    background-position: center;
+    transition: background-color 0.3s ease, opacity 0.5s ease; /* Transición para opacidad */
+    opacity: 10; /* Inicialmente la imagen de fondo es un poco transparente */
+}
+
+/* Si el fondo está opaco, lo podemos controlar a través de la clase 'hide-background' */
+.dashboard-main.hide-background {
+    opacity: 5; /* Se hace opaco cuando se cambia el estado */
+}
+
+/* Añadimos un filtro para la opacidad de la imagen de fondo */
+.dashboard-main::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit; /* Hereda la imagen de fondo */
+    opacity: 5; /* Opacidad ajustada para que la imagen sea más sutil */
+    z-index: -100; /* Coloca el filtro detrás del contenido */
+}
+
+/* Estilo para el título principal */
+.dashboard-main h1 {
+    font-size: 2rem;
+    color: #005B87; /* Color institucional más serio y profesional */
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.main-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    gap: 20px;
+}
+
+.options-section {
+    width: 60%;
+}
+
+.options-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 15px;
+    justify-items: center;
+    padding: 20px;
+    width: 100%;
+}
+
+.option-btn {
+    background-color: #0069A5; /* Un azul más sobrio para el botón */
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 8px;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+}
+
+/* Efecto de hover con un amarillo profesional */
+.option-btn:hover {
+    background-color: #F1C40F; /* Color amarillo suave pero profesional */
+    color: rgb(255, 255, 255);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.option-btn:active {
+    background-color: #F39C12; /* Amarillo un poco más oscuro en el estado activo */
+    transform: translateY(0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.image-section {
+    width: 35%;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.image-section img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.2s ease;
+}
+
+@media (max-width: 768px) {
+    .dashboard-main h1 {
+        font-size: 1.5rem;
+    }
+
+    .option-btn {
+        font-size: 0.9rem;
+        height: 70px;
+        padding: 8px 12px;
+    }
+
+    .main-content {
+        flex-direction: column;
+    }
+
+    .options-section {
+        width: 100%;
+    }
+
+    .image-section {
+        width: 100%;
+        height: 200px;
+    }
+}

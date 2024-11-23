@@ -1,0 +1,88 @@
+/* Estilos para el pie de página */
+.dashboard-footer {
+    background: linear-gradient(180deg, #129b1d, #005B2B); /* Gradiente verde institucional de la UNCP */
+    padding: 30px 20px; /* Añadido más espacio para hacerlo más elegante */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Asegura que los elementos estén apilados verticalmente */
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil en la parte superior */
+    position: relative;
+    z-index: 10;
+}
+
+/* Contenedor de las opciones del pie de página */
+.footer-options {
+    display: flex;
+    gap: 30px; /* Espacio mayor entre los elementos */
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px; /* Espaciado hacia abajo para separar de las opciones del texto */
+}
+
+/* Estilo de cada item del pie de página */
+.footer-item {
+    text-decoration: none;
+    color: white;
+    font-size: 1.1rem; /* Tamaño de fuente más grande */
+    font-weight: 500;
+    padding: 12px 25px; /* Espaciado mayor para una mejor apariencia */
+    border-radius: 30px; /* Bordes más redondeados */
+    background-color: rgba(255, 255, 255, 0.1); /* Fondo sutil, semi-transparente */
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
+}
+
+/* Efecto de hover para los items */
+.footer-item:hover {
+    background-color: #F1C40F; /* Amarillo suave para resaltar sobre el fondo verde */
+    transform: translateY(-5px); /* Sutil efecto de elevar */
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2); /* Sombra más prominente */
+    padding: 12px 30px; /* Aumentar el padding al hacer hover */
+}
+
+/* Efecto de hover con sombra más intensa */
+.footer-item:focus, .footer-item:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); /* Sombra más intensa */
+}
+
+/* Estilos para el texto de animación */
+.footer-text h3 {
+    font-family: 'Playfair Display', serif; /* Aplica la nueva fuente */
+    font-size: 1.5rem; /* Puedes aumentar el tamaño para que sea más destacado */
+    color: rgb(255, 251, 0); /* Mantienes el color dorado */
+    text-align: center;
+    font-weight: 500; /* Peso de fuente un poco más fuerte para darle elegancia */
+    font-style: italic; /* Si deseas que tenga un estilo itálico */
+    margin-top: 0px; /* Un poco más de espacio con respecto al menú */
+    opacity: 0; /* Comienza invisible */
+    animation: fadeIn 2s forwards; /* Animación de desvanecimiento */
+}
+
+
+/* Animación de desvanecimiento */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Responsive: hacer que el pie de página se adapte a pantallas pequeñas */
+@media (max-width: 768px) {
+    .dashboard-footer {
+        padding: 20px 10px; /* Menos espacio en pantallas pequeñas */
+    }
+
+    .footer-options {
+        flex-direction: column; /* Los items se alinean verticalmente */
+        gap: 15px;
+    }
+
+    .footer-item {
+        font-size: 1rem; /* Reducir el tamaño de la fuente en pantallas pequeñas */
+        padding: 10px 20px; /* Ajustar el tamaño de los botones */
+    }
+}
