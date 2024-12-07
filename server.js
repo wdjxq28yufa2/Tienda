@@ -8,6 +8,11 @@ import path from 'path'; // Importamos path
 
 import fs from 'fs'; // Importamos fs para crear directorios
 
+
+import { realizarScraping } from './scraping.js';
+
+
+
 // Crear una instancia de express
 const app = express();
 const port = 5000; // Puerto donde se ejecutará el servidor
@@ -34,6 +39,25 @@ db.connect((err) => {
   }
   console.log('Conexión a la base de datos exitosa');
 });
+
+//SCRAPING--------------------------------------------------------------------------------
+// Endpoint para iniciar el scraping
+app.post('/api/scraping/:dni', async (req, res) => {
+  const { dni } = req.params;
+
+  try {
+    // Llamar a la función de scraping y esperar el resultado
+    await realizarScraping(dni);
+    res.json({ success: true, message: 'Scraping realizado correctamente.' });
+  } catch (error) {
+    console.error('Error en scraping:', error);
+    res.status(500).json({ success: false, message: 'Error al realizar scraping.' });
+  }
+});
+
+
+
+
 
 // Ruta para registrar un nuevo usuario
 app.post('/register', (req, res) => {

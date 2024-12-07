@@ -85,8 +85,23 @@ const Clientes = () => {
   
   
 
-  const handleOpenScraping = (dni) => {
-    window.open(`https://servicios.distriluz.com.pe/OficinaVirtualConsulta/Consultas/Consultas/ConsultaMiRecibo?dni=${dni}`, '_blank');
+  const handleScraping = async (dni) => {
+    try {
+      const response = await fetch(`http://localhost:5000/api/scraping/${dni}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      });
+  
+      const data = await response.json();
+      if (data.success) {
+        alert('Scraping realizado con éxito');
+      } else {
+        alert('Error al realizar scraping');
+      }
+    } catch (error) {
+      console.error('Error en la solicitud de scraping:', error);
+      alert('Error al realizar scraping');
+    }
   };
 
   const handleEditCliente = (cliente) => {
@@ -157,7 +172,7 @@ const Clientes = () => {
             <button onClick={() => handleEditCliente(cliente)}>Editar</button> {/* Botón cambiado a "Editar" */}
             <button onClick={() => handleCreateExpediente(cliente.dni, cliente)}>Crear Expediente</button>
 
-            <button onClick={() => handleOpenScraping(cliente.dni)}>Scraping</button>
+            <button onClick={() => handleScraping(cliente.dni)}>Scraping</button>
           </li>
         ))}
       </ul>
