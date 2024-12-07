@@ -56,23 +56,33 @@ const Clientes = () => {
       .catch((error) => console.error('Error al actualizar el cliente:', error));
   };
 
-  const handleCreateExpediente = (dni) => {
-    fetch(`http://localhost:5000/api/clientes/expediente/${dni}`, {
-      method: 'POST',
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Error al crear el expediente');
+  const handleCreateExpediente = async (dni, cliente) => {
+    try {
+      const response = await fetch(`http://localhost:5000/api/clientes/expediente/${dni}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          dni,
+          nombres: cliente.nombres,
+          apellido_paterno: cliente.apellido_paterno,
+          apellido_materno: cliente.apellido_materno,
+        }),
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        alert(data.message);  // Mensaje de éxito
+      } else {
+        const errorData = await response.json();
+        alert(`Error al crear expediente: ${errorData.message}`);  // Mensaje de error
       }
-      return response.json();
-    })
-    .then(data => {
-      console.log('Expediente creado:', data);
-    })
-    .catch(error => {
-      console.error('Error al crear el expediente:', error);
-    });
+    } catch (error) {
+      console.error('Error en la creación del expediente:', error);
+      alert('Error al crear el expediente en el servidor');
+    }
   };
+  
+  
   
 
   const handleOpenScraping = (dni) => {
@@ -145,7 +155,8 @@ const Clientes = () => {
             <span>{cliente.celular}</span>
             <button onClick={() => handleDeleteCliente(cliente.id)}>Eliminar</button>
             <button onClick={() => handleEditCliente(cliente)}>Editar</button> {/* Botón cambiado a "Editar" */}
-            <button onClick={() => handleCreateExpediente(cliente.dni)}>Crear Expediente</button>
+            <button onClick={() => handleCreateExpediente(cliente.dni, cliente)}>Crear Expediente</button>
+
             <button onClick={() => handleOpenScraping(cliente.dni)}>Scraping</button>
           </li>
         ))}

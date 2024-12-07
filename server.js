@@ -5,12 +5,14 @@ import mysql from 'mysql2';
 import bcrypt from 'bcryptjs'; 
 import cors from 'cors'; 
 import path from 'path'; // Importamos path
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
+
 import fs from 'fs'; // Importamos fs para crear directorios
 
 // Crear una instancia de express
 const app = express();
 const port = 5000; // Puerto donde se ejecutará el servidor
+
+const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
 // Usar middlewares
 app.use(express.json()); // Para parsear el cuerpo de las peticiones como JSON
@@ -176,15 +178,20 @@ app.delete('/api/clientes/:id', (req, res) => {
 });
 
 // Crear expediente (crear una carpeta para cada cliente)
-// Crear expediente (crear una carpeta para cada cliente)
 app.post('/api/clientes/expediente/:dni', (req, res) => {
   const { dni } = req.params;
-  
-  // Asegurarnos de que la ruta esté correctamente formada sin duplicar 'C:\'
-  const expedientePath = path.join(__dirname, 'expedientes', dni);
+  const { nombres, apellido_paterno, apellido_materno } = req.body; // Asegúrate de que estos datos se envíen desde el frontend
 
-  // Normalizar la ruta para asegurarnos de que esté correcta
+  // Formar la carpeta con el formato "DNI - APELLIDO PATERNO APELLIDO MATERNO NOMBRE"
+  const expedienteFolderName = `${dni} - ${apellido_paterno} ${apellido_materno} ${nombres}`;
+
+  // Asegúrate de que la ruta esté correctamente formada sin duplicar 'C:\'
+  const expedientePath = path.resolve('expedientes', expedienteFolderName);
+
+  // Normalizamos la ruta para asegurarnos de que esté correcta
   const normalizedPath = path.normalize(expedientePath);
+
+  console.log('Ruta normalizada:', normalizedPath);  // Para verificar la ruta construida
 
   // Verificar si el expediente ya existe
   if (fs.existsSync(normalizedPath)) {
@@ -194,12 +201,14 @@ app.post('/api/clientes/expediente/:dni', (req, res) => {
   // Crear el directorio para el expediente
   fs.mkdir(normalizedPath, { recursive: true }, (err) => {
     if (err) {
-      console.error('Error al crear expediente:', err);
-      return res.status(500).json({ success: false, message: 'Error al crear expediente' });
+      console.error('Error al crear expediente:', err);  // Imprime el error completo
+      return res.status(500).json({ success: false, message: `Error al crear expediente: ${err.message}` });  // Devuelve el mensaje de error detallado
     }
     res.json({ success: true, message: 'Expediente creado exitosamente.' });
   });
 });
+
+
 
 // Iniciar el servidor
 app.listen(port, () => {
