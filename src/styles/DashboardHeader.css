@@ -4,7 +4,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background-color: #6d7680; /* Fondo oscuro y elegante */
+    background-color: #1e97cf; /* Fondo oscuro y elegante */
     color: white;
     position: relative;
     width: 100%; /* Asegura que el header ocupe todo el ancho de la pantalla */
@@ -123,7 +123,7 @@
 }
 
 .menu-options li:hover {
-    background-color: #07e437;
+    background-color: #1d83b3;
 }
 
 /* Estilos para el modal de confirmación */

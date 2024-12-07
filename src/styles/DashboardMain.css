@@ -8,7 +8,7 @@
     background-color: #f4f7fc;
     min-height: 30vh;
     position: relative;
-    background-image: url('/images/fondo.jpg'); /* Imagen de fondo */
+    background-image: url('/images/fondo.png'); /* Imagen de fondo */
     background-size: cover;
     background-position: center;
     transition: background-color 0.3s ease, opacity 0.5s ease; /* Transición para opacidad */

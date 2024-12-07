@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; // Importa useNavigate para redirigir
 import '../styles/Login.css';
 
 const Login = () => {
   const [username, setUsername] = useState(''); // Para el correo
   const [password, setPassword] = useState(''); // Para la contraseña
   const [errorMessage, setErrorMessage] = useState(''); // Para mostrar el error
+
+  const navigate = useNavigate(); // Hook para navegar a otras rutas
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -21,12 +24,16 @@ const Login = () => {
       localStorage.setItem('authToken', response.data.token);
 
       // Redirigir a la página del Dashboard (usando React Router, por ejemplo)
-      window.location.href = '/dashboard'; // Esto redirige a /dashboard
+      navigate('/dashboard'); // Usamos navigate para redirigir
 
     } catch (error) {
       // Si ocurre un error, mostrar el mensaje correspondiente
       setErrorMessage(error.response?.data?.message || 'Hubo un error en el login');
     }
+  };
+
+  const handleRegisterRedirect = () => {
+    navigate('/register'); // Redirige al formulario de registro
   };
 
   return (
@@ -60,6 +67,13 @@ const Login = () => {
         {errorMessage && <p className="error-message">{errorMessage}</p>}
 
         <button type="submit">Iniciar sesión</button>
+
+        {/* Botón para redirigir al registro */}
+        <div className="register-link">
+          <button type="button" onClick={handleRegisterRedirect}>
+            Crear cuenta
+          </button>
+        </div>
       </form>
     </div>
   );

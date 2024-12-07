@@ -4,7 +4,7 @@ import '../styles/DashboardFooter.css';
 
 function DashboardFooter() {
   const [showText, setShowText] = useState(false); // Estado para manejar la visibilidad del texto
-  const fullText = "El mapeo de procesos sigue estándares de ISO 9001 y 21001, ICACIT y SINEACE";
+  const fullText = "Seguimos siendo tu cooperativa de confianza";
 
   useEffect(() => {
     // Hacemos que el texto aparezca después de un pequeño retraso
@@ -21,11 +21,7 @@ function DashboardFooter() {
       {window.location.pathname === "/dashboard" && (
         <div className="footer-options">
           {/* Enlaces a las opciones que mencionaste */}
-          <Link to="/seguridad-salud-trabajo" className="footer-item">Seguridad y salud en el trabajo</Link>
-          <Link to="/gestion-talento-humano" className="footer-item">Gestión del talento humano</Link>
-          <Link to="/informacion-comunicacion" className="footer-item">Información y comunicación</Link>
-          <Link to="/bienestar-organizacional" className="footer-item">Bienestar organizacional</Link>
-          <Link to="/consejeria-academica" className="footer-item">Consejería académica</Link>
+          
         </div>
       )}
 

@@ -8,22 +8,8 @@ const DashboardMain = () => {
 
   // Lista de opciones
   const options = [
-    { name: "Admisión", route: "/dashboard/admision" },
-    { name: "Nivelaciones de estudiantes", route: "/dashboard/nivelaciones" },
-    { name: "Matrícula", route: "/dashboard/matricula" },
-    { name: "Diseño curricular", route: "/dashboard/diseno-curricular" },
-    { name: "Convalidaciones", route: "/dashboard/convalidaciones" },
-    { name: "Enseñanza-Aprendizaje", route: "/dashboard/ensenanza-aprendizaje" },
-    { name: "Prácticas preprofesionales", route: "/dashboard/practicas-preprofesionales" },
-    { name: "Proyección social", route: "/dashboard/proyeccion-social" },
-    { name: "Extensión cultural", route: "/dashboard/extension-cultural" },
-    { name: "Servicios educacionales", route: "/dashboard/servicios-educacionales" },
-    { name: "Seguimiento al estudiante", route: "/dashboard/seguimiento-estudiante" },
-    { name: "Tutoría", route: "/dashboard/tutoria" },
-    { name: "Internacionalización", route: "/dashboard/internacionalizacion" },
-    { name: "Investigación", route: "/dashboard/investigacion" },
-    { name: "Grados y títulos", route: "/dashboard/grados-titulos" },
-    { name: "Gestión de egresados", route: "/dashboard/gestion-egresados" }
+    
+    
   ];
 
   // Función para manejar el clic en una opción

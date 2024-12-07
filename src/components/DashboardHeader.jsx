@@ -60,9 +60,7 @@ function DashboardHeader() {
         <Link to="/dashboard" className="logo-link">
           <img src="/images/logo.png" alt="Logo de CampusUC" className={titleVisible ? 'logo-animate' : ''} />
         </Link>
-        <Link to="/dashboard" className="logo-link">
-          <img src="/images/sist.png" alt="Logo Sist" className={titleVisible ? 'logo-animate' : ''} />
-        </Link>
+        
       </div>
 
       {/* Mostrar el título de la opción seleccionada o el menú, dependiendo de la ruta */}
@@ -76,10 +74,10 @@ function DashboardHeader() {
             <div className="navbar-container">
               <nav className="navbar">
                 <ul className="header-options">
-                  <li><Link to="/dashboard/Direccionamiento-Estratégico" className="nav-item">Direccionamiento Estratégico</Link></li>
-                  <li><Link to="/dashboard/Gestión-para-Organizaciones-educativas" className="nav-item">Gestión para Organizaciones educativas</Link></li>
-                  <li><Link to="/dashboard/Responsabilidad-Social" className="nav-item">Responsabilidad Social</Link></li>
-                  <li><Link to="/dashboard/Sostenibilidad-Ambiental" className="nav-item">Sostenibilidad Ambiental</Link></li>
+                  <li><Link to="/dashboard/CLIENTES" className="nav-item">CLIENTES</Link></li>
+                  <li><Link to="/dashboard/APORTES" className="nav-item">APORTES</Link></li>
+                  <li><Link to="/dashboard/NOTIFICACIONES" className="nav-item">NOTIFICACIONES</Link></li>
+                  
                 </ul>
               </nav>
             </div>
