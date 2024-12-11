@@ -39,4 +39,3 @@ db.connect((err) => {
 app.listen(port, '0.0.0.0', () => {  // Escuchar en todas las interfaces de red
   console.log(`Servidor escuchando en http://localhost:${port}`);
 });
-
