@@ -15,7 +15,7 @@ import { realizarScraping } from './scraping.js';
 
 // Crear una instancia de express
 const app = express();
-const port = 5000; // Puerto donde se ejecutará el servidor
+const port = 24311; // Puerto donde se ejecutará el servidor
 
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
@@ -25,10 +25,10 @@ app.use(cors()); // Habilitar CORS si es necesario
 
 // Configuración de la base de datos
 const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'Erick', 
-  password: 'erickMV123@',
-  database: 'tienda_online'
+  host: 'junction.proxy.rlwy.net',
+  user: 'root', 
+  password: 'LkCuPoSuOppziKvSYyRUJZbDfLPngPFA',
+  database: 'railway'
 });
 
 // Verificar la conexión a la base de datos
