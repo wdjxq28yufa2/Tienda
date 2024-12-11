@@ -15,6 +15,7 @@ const Carrito = () => {
   const [cuentaBancaria, setCuentaBancaria] = useState('');
   const [contrasenaBancaria, setContrasenaBancaria] = useState('');
   const [error, setError] = useState(''); // Para mostrar errores de validación
+  const [compraExitosa, setCompraExitosa] = useState(false); // Estado para mostrar el mensaje de compra exitosa
 
   useEffect(() => {
     // Cargar productos del carrito desde el localStorage cuando el componente se monte
@@ -116,10 +117,21 @@ const Carrito = () => {
     clientes.push(cliente);
     localStorage.setItem('clientes', JSON.stringify(clientes));
 
-    // Mostrar un mensaje de éxito y cerrar el modal
-    alert("Compra realizada exitosamente!");
-    cerrarModal(); // Cerrar el modal después de realizar la compra
-};
+    // Mostrar un mensaje de éxito
+    setCompraExitosa(true); // Mostrar la ventana de compra exitosa
+    setTimeout(() => setCompraExitosa(false), 1500); // Desaparecerla después de 1.5 segundos
+
+    // Cerrar el modal después de realizar la compra
+    cerrarModal(); 
+  };
+
+  // Función para manejar el clic fuera del modal
+  const manejarClicFueraModal = (e) => {
+    // Si el clic ocurre fuera del contenido del modal, lo cerramos
+    if (e.target.classList.contains('modal')) {
+      cerrarModal();
+    }
+  };
 
   return (
     <div className="carrito-page">
@@ -127,13 +139,13 @@ const Carrito = () => {
 
       <div className="carrito-container">
         <h2 className="carrito-title">Carrito de Compras</h2>
-        <div className="carrito-items">
+        <div className="carrito-items-container">
           {productosEnCarrito.length === 0 ? (
             <p className="no-items">No hay productos en tu carrito</p>
           ) : (
-            <ul>
+            <div className="carrito-items">
               {productosEnCarrito.map((producto) => (
-                <li key={producto.id} className="carrito-item">
+                <div key={producto.id} className="carrito-item">
                   <img src={producto.imagen} alt={producto.nombre} className="producto-imagen" />
                   <div className="producto-info">
                     <h4>{producto.nombre}</h4>
@@ -146,9 +158,9 @@ const Carrito = () => {
                     <p>Precio Total: S/{(producto.precioConOferta ? producto.precioConOferta : producto.precio) * producto.cantidad}</p>
                   </div>
                   <button onClick={() => eliminarProducto(producto.id)} className="btn-eliminar">Eliminar</button>
-                </li>
+                </div>
               ))}
-            </ul>
+            </div>
           )}
         </div>
         {productosEnCarrito.length > 0 && (
@@ -161,8 +173,8 @@ const Carrito = () => {
 
       {/* Modal de Confirmación de Datos */}
       {mostrarModal && (
-        <div className="modal">
-          <div className="modal-content">
+        <div className="modal" onClick={manejarClicFueraModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <span className="close" onClick={cerrarModal}>×</span>
             <h2>Confirmar Datos</h2>
             {error && <p className="error">{error}</p>} {/* Mostrar error si hay */}
@@ -235,6 +247,14 @@ const Carrito = () => {
 
             <button onClick={manejarPago}>Confirmar Compra</button>
           </div>
+        </div>
+      )}
+
+      {/* Ventana emergente de Compra exitosa */}
+      {compraExitosa && (
+        <div className="compra-exitosa">
+          <h2>Compra Realizada con Éxito</h2>
+          <span role="img" aria-label="carita feliz">😊</span>
         </div>
       )}
     </div>

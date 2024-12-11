@@ -14,7 +14,7 @@ const Pedidos = () => {
     <div className="pedidos-container">
       <h2 className="titulo-pedidos">Mis Pedidos</h2>
       {pedidos.length === 0 ? (
-        <p className="mensaje-no-pedidos">No tienes pedidos realizados aún.</p> // Mensaje si no hay pedidos
+        <p className="mensaje-no-pedidos">No tienes pedidos realizados aún.</p>
       ) : (
         <div className="pedidos-lista">
           {pedidos.map((pedido, index) => (

@@ -1,127 +1,144 @@
-/* Pedidos.css */
-
 /* Estilos generales */
 .pedidos-container {
     padding: 20px;
     font-family: 'Roboto', sans-serif;
     background-color: #f4f4f4;
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
     color: #333;
-  }
-  
-  .titulo-pedidos {
+}
+
+.titulo-pedidos {
     text-align: center;
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: 600;
     margin-bottom: 30px;
-    color: #444;
-  }
-  
-  .mensaje-no-pedidos {
+    color: #2d3b48;
+}
+
+.mensaje-no-pedidos {
     text-align: center;
     font-size: 1.2rem;
     color: #888;
-  }
-  
-  /* Estilo de la lista de pedidos */
-  .pedidos-lista {
+}
+
+/* Estilo de la lista de pedidos */
+.pedidos-lista {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    gap: 30px;
     margin-top: 30px;
-  }
-  
-  .pedido-card {
+}
+
+.pedido-card {
     background-color: #fff;
-    border-radius: 10px;
+    border-radius: 12px;
     border: 1px solid #ddd;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease-in-out;
-  }
-  
-  .pedido-card:hover {
+    transition: transform 0.2s ease-in-out, box-shadow 0.3s ease;
+}
+
+.pedido-card:hover {
     transform: translateY(-5px);
-  }
-  
-  .pedido-header {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.pedido-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
-  }
-  
-  .pedido-id {
-    font-size: 1.3rem;
-    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.pedido-id {
+    font-size: 1.4rem;
+    font-weight: 600;
     color: #2d3b48;
-  }
-  
-  .pedido-fecha {
+}
+
+.pedido-fecha {
     font-size: 0.9rem;
     color: #aaa;
-  }
-  
-  /* Información general del pedido */
-  .pedido-info {
-    font-size: 1rem;
+}
+
+/* Información general del pedido */
+.pedido-info {
+    font-size: 1.1rem;
     margin-bottom: 20px;
-  }
-  
-  .pedido-info p {
+}
+
+.pedido-info p {
     margin: 8px 0;
     color: #555;
-  }
-  
-  .pedido-productos h4 {
-    font-size: 1.1rem;
+}
+
+/* Información de productos */
+.pedido-productos h4 {
+    font-size: 1.2rem;
     font-weight: 600;
     color: #333;
-    margin-bottom: 10px;
-  }
-  
-  .producto-item {
+    margin-bottom: 15px;
+}
+
+.producto-item {
     margin-bottom: 15px;
     border-bottom: 1px solid #f1f1f1;
     padding-bottom: 10px;
-  }
-  
-  .producto-info p {
+}
+
+.producto-info p {
     margin: 5px 0;
-  }
-  
-  .producto-nombre {
+}
+
+.producto-nombre {
     font-size: 1rem;
     font-weight: 600;
     color: #333;
-  }
-  
-  /* Total del pedido */
-  .pedido-total {
-    font-size: 1.2rem;
+}
+
+/* Total del pedido */
+.pedido-total {
+    font-size: 1.3rem;
     font-weight: 700;
     color: #2d3b48;
     margin-top: 20px;
     text-align: right;
-  }
-  
-  .pedido-total h4 {
+}
+
+.pedido-total h4 {
     margin: 0;
-  }
-  
-  /* Responsividad */
-  @media (max-width: 768px) {
+}
+
+/* Responsividad */
+@media (max-width: 1024px) {
     .pedidos-lista {
-      grid-template-columns: 1fr;
+        grid-template-columns: 1fr;
     }
-  
+
     .pedido-card {
-      padding: 15px;
+        padding: 15px;
     }
-  
+
     .titulo-pedidos {
-      font-size: 1.8rem;
+        font-size: 2rem;
     }
-  }
-  
+}
+
+@media (max-width: 768px) {
+    .titulo-pedidos {
+        font-size: 1.7rem;
+    }
+
+    .pedido-info {
+        font-size: 1rem;
+    }
+
+    .pedido-productos h4 {
+        font-size: 1.1rem;
+    }
+
+    .pedido-total {
+        font-size: 1.2rem;
+    }
+}

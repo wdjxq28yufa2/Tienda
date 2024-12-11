@@ -1,7 +1,7 @@
 /* dashboard-main.css */
 .dashboard-main {
   padding: 20px;
-  background-color: #f4f4f4;
+  background-color: #fef2f5; /* Rosa muy suave de fondo */
   transition: background-color 0.3s ease;
 }
 
@@ -21,12 +21,16 @@
 
 .option-container {
   text-align: center;
+  border: 2px solid #f8b7d2;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
 }
 
 .option-btn {
   display: block;
   padding: 15px;
-  background-color: #007bff;
+  background-color: #ff3366; /* Rosa más fuerte para los botones */
   color: white;
   text-align: center;
   text-decoration: none;
@@ -36,7 +40,7 @@
 }
 
 .option-btn:hover {
-  background-color: #0056b3;
+  background-color: #f06595; /* Rosa un poco más oscuro */
 }
 
 .option-image-container {
@@ -64,4 +68,46 @@
 .welcome-message h2 {
   font-size: 2rem;
   color: #333;
+}
+
+@media (max-width: 768px) {
+  .options-grid {
+    grid-template-columns: 1fr 1fr; /* 2 columnas */
+  }
+
+  .option-container {
+    width: 100%;
+  }
+
+  .option-btn {
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  .option-image {
+    height: 150px;
+  }
+
+  .welcome-message h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .options-grid {
+    grid-template-columns: 1fr; /* 1 columna */
+  }
+
+  .option-btn {
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  .option-image {
+    height: 120px;
+  }
+
+  .welcome-message h2 {
+    font-size: 1.2rem;
+  }
 }
