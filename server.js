@@ -25,10 +25,10 @@ app.use(cors()); // Habilitar CORS si es necesario
 
 // Configuración de la base de datos
 const db = mysql.createConnection({
-  host: 'junction.proxy.rlwy.net',
-  user: 'root', 
-  password: 'LkCuPoSuOppziKvSYyRUJZbDfLPngPFA',
-  database: 'railway'
+  host: 'localhost',
+  user: 'Erick', 
+  password: 'erickMV123@',
+  database: 'coopacWeb'
 });
 
 // Verificar la conexión a la base de datos
