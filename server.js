@@ -28,7 +28,7 @@ const db = mysql.createConnection({
   host: 'localhost',
   user: 'Erick', 
   password: 'erickMV123@',
-  database: 'coopacWeb'
+  database: 'tienda_online'
 });
 
 // Verificar la conexión a la base de datos
