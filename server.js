@@ -41,8 +41,8 @@ db.connect((err) => {
 app.use(express.static(path.join(__dirname, 'dist'))); // Asegúrate de que 'dist' es la carpeta generada
 
 // Enviar el archivo HTML de React cuando se accede a la raíz
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist', 'index.html')); // Cambia 'dist' por 'build' si es necesario
+app.get('/dashboard', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
 
 // Iniciar el servidor
