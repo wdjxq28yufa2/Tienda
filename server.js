@@ -4,6 +4,7 @@ import cors from 'cors';
 import path from 'path'; 
 import { config } from 'dotenv'; // Para cargar las variables de entorno
 import fs from 'fs'; // Importamos fs para crear directorios
+import url from 'url'; // Para usar import.meta.url
 
 // Cargar las variables de entorno desde el archivo .env
 config();  
@@ -11,7 +12,8 @@ config();
 const app = express();
 const port = process.env.PORT || 8080; // El puerto puede venir desde las variables de entorno
 
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
+// Convertir import.meta.url a una ruta absoluta
+const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
 // Usar middlewares
 app.use(express.json()); // Para parsear el cuerpo de las peticiones como JSON
@@ -33,6 +35,14 @@ db.connect((err) => {
     return;
   }
   console.log('Conexión a la base de datos exitosa');
+});
+
+// Servir los archivos estáticos del frontend (React/Vite)
+app.use(express.static(path.join(__dirname, 'dist'))); // Asegúrate de que 'dist' es la carpeta generada
+
+// Enviar el archivo HTML de React cuando se accede a la raíz
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html')); // Cambia 'dist' por 'build' si es necesario
 });
 
 // Iniciar el servidor
