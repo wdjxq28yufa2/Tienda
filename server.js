@@ -42,7 +42,7 @@ app.use(express.static(path.join(__dirname, 'dist'))); // Asegúrate de que 'dis
 
 // Enviar el archivo HTML de React cuando se accede a la raíz
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html')); // Esto es importante para que React Router maneje las rutas
+  res.sendFile(path.join(__dirname, 'dist', 'index.html')); // Esto es importante para que React Router maneje las rutas
 });
 
 
