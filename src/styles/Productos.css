@@ -1,0 +1,94 @@
+.productos-container {
+  padding: 20px;
+  text-align: center;
+}
+
+.productos-items {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); /* Muestra 6 productos por fila */
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.producto-item {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  text-align: center;
+}
+
+.producto-imagen {
+  width: 100%;
+  height: auto;
+  max-width: 200px;
+  margin-bottom: 15px;
+}
+
+.producto-info h4 {
+  font-size: 1.1rem;
+  margin: 10px 0;
+}
+
+.precio {
+  font-size: 1.2rem;
+  color: #e60023;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.cantidad-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.btn-cantidad {
+  background-color: #e60023;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin: 0 10px;
+}
+
+.cantidad {
+  font-size: 1.2rem;
+  margin: 0 10px;
+}
+
+.btn-agregar-carrito {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.btn-agregar-carrito:hover {
+  background-color: #45a049;
+}
+
+/* Estilo para el mensaje de producto agregado */
+.mensaje-agregado {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  transition: opacity 0.3s ease;
+}

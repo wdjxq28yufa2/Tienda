@@ -15,16 +15,10 @@ function DashboardHeader() {
   const location = useLocation();
   const [titleVisible, setTitleVisible] = useState(false);
 
-  // Verifica si estamos en la página principal del dashboard
-  const isDashboard = location.pathname === "/dashboard";
-  
-  // Obtener la opción actual desde la URL (si existe) y decodificarla
-  const opcion = location.pathname.split('/')[2];
-  
-  // Decodificar la URL y reemplazar los guiones por espacios
-  const decodedTitle = opcion ? decodeURIComponent(opcion.replaceAll('-', ' ')) : ''; 
+  // Verifica si estamos en la página principal de la tienda
+  const isHome = location.pathname === "/";
 
-  // Función para abrir o cerrar el menú
+  // Función para abrir o cerrar el menú de opciones del usuario
   const toggleMenu = () => {
     setIsMenuOpen(prevState => !prevState);
   };
@@ -57,65 +51,54 @@ function DashboardHeader() {
   return (
     <header className="dashboard-header">
       <div className="logo-container">
-        <Link to="/dashboard" className="logo-link">
-          <img src="/images/logo.png" alt="Logo de CampusUC" className={titleVisible ? 'logo-animate' : ''} />
+        <Link to="/" className="logo-link">
+          <img src="/images/logo.jpg" alt="Logo de la tienda" className={titleVisible ? 'logo-animate' : ''} />
         </Link>
-        
       </div>
 
-      {/* Mostrar el título de la opción seleccionada o el menú, dependiendo de la ruta */}
+      {/* Menú de navegación de la tienda */}
       <div className="header-center">
-        {decodedTitle ? (
-          <h1 className={titleVisible ? 'title-animate' : ''}>
-            {decodedTitle.toUpperCase()}
-          </h1>
+        {isHome ? (
+          <div className="navbar-container">
+            <nav className="navbar">
+              <ul className="header-options">
+                <li>
+                  <Link to="/productos" className="nav-item">
+                    <i className="fas fa-tshirt"></i> Productos
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/ofertas" className="nav-item">
+                    <i className="fas fa-tags"></i> Ofertas
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/categorias" className="nav-item">
+                    <i className="fas fa-th-large"></i> Categorías
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/contacto" className="nav-item">
+                    <i className="fas fa-phone-alt"></i> Contacto
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+          </div>
         ) : (
-          isDashboard && (
-            <div className="navbar-container">
-              <nav className="navbar">
-                <ul className="header-options">
-                  <li><Link to="/dashboard/CLIENTES" className="nav-item">CLIENTES</Link></li>
-                  <li><Link to="/dashboard/APORTES" className="nav-item">APORTES</Link></li>
-                  <li><Link to="/dashboard/NOTIFICACIONES" className="nav-item">NOTIFICACIONES</Link></li>
-                  
-                </ul>
-              </nav>
-            </div>
-          )
+          <h1 className={titleVisible ? 'title-animate' : ''}>
+            Tienda Kayemi {/* Título fijo */}
+          </h1>
         )}
       </div>
 
-      {/* Ícono de usuario */}
-      <div className="user-icon-container">
-        {/* Reemplaza el icono con la imagen sist.jpg */}
-        <img 
-          src="/images/inge.jpg" 
-          alt="Icono de usuario" 
-          className="user-icon" 
-          onClick={toggleMenu} 
-          title="Opciones" 
-        />
-        {isMenuOpen && (
-          <div className="menu-options">
-            <ul>
-              <li onClick={confirmLogout}>Cerrar sesión</li>
-            </ul>
-          </div>
-        )}
+      {/* Íconos de usuario y carrito */}
+      <div className="user-cart-container">
+        {/* Carrito de compras */}
+        <Link to="/dashboard/carrito" className="cart-icon">
+          <i className="fas fa-shopping-cart"></i>
+        </Link>
       </div>
-
-      {/* Modal de confirmación de cierre de sesión */}
-      {showConfirmLogout && (
-        <div className="modal-overlay">
-          <div className="modal-container">
-            <h2>¿Estás seguro que deseas cerrar sesión?</h2>
-            <div className="modal-buttons">
-              <button className="btn-cancel" onClick={cancelLogout}>Cancelar</button>
-              <button className="btn-confirm" onClick={confirmAndLogout}>Confirmar</button>
-            </div>
-          </div>
-        </div>
-      )}
     </header>
   );
 }

@@ -1,4 +1,9 @@
 import puppeteer from 'puppeteer';
+import fs from 'fs';
+import path from 'path';  // Importar 'path'
+
+const __dirname = path.dirname(new URL(import.meta.url).pathname);  // Esto simula `__dirname` en ES Modules
+
 
 export const realizarScraping = async (dni) => {
   let browser;
@@ -36,7 +41,36 @@ export const realizarScraping = async (dni) => {
     // Hacer clic en el botón 'Consultar'
     await page.click('#btnSearch');
 
+
+    // Esperar a que el elemento con id "imgRecibo" esté visible
+    await page.waitForSelector('#imgRecibo', { visible: true,});  // Esperar hasta 30 segundos
+
+    
+
+     
+
+    
+
     // Esperar un poco más para asegurarnos de que la página cargue la respuesta
+    // Definir la ruta para guardar el PDF
+    const folderPath = path.join( 'expedientes', dni); // Ruta para la carpeta del cliente
+    const pdfPath = path.join(folderPath, 'consulta.pdf'); // Ruta del archivo PDF
+
+    // Crear la carpeta si no existe
+    if (!fs.existsSync(folderPath)) {
+      fs.mkdirSync(folderPath, { recursive: true });
+    }
+
+
+    // Generar el PDF de la página
+    await page.pdf({
+      path: pdfPath,        // Ruta donde guardar el PDF
+      format: 'A4',         // Tamaño de página
+      printBackground: true // Imprimir los fondos (útil si la página tiene fondos de color)
+    });
+
+    console.log(`PDF guardado en: ${pdfPath}`);
+
     
 
     // Verificar si la página no se cerró inesperadamente

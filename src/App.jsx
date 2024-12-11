@@ -3,29 +3,34 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import DashboardHeader from './components/DashboardHeader';
 import DashboardFooter from './components/DashboardFooter';
 import DashboardMain from './components/DashboardMain';
-import Login from './components/Login';
 import Register from './components/Register';
 import VistaOpcion from './components/VistaOpcion';
 import Proceso from './components/Proceso';
 import Macroprocesos from './pages/Macroprocesos';
-import Clientes from './components/Clientes'; // Asegúrate de importar Clientes
+import Clientes from './components/Clientes'; // Importar Clientes
+import Aportes from './components/Aportes'; // Importar Aportes
+import Categorias from './components/Categorias'; // Importar Categorias
+import Productos from './components/Productos'; // Importar Productos
+import Ofertas from './components/Ofertas'; // Importar Ofertas
+import Pedidos from './components/Pedidos'; // Importar Pedidos
+import Carrito from './components/Carrito'; // Importar Carrito
 
+// Aquí eliminamos la verificación de autenticación.
 function ProtectedRoute({ element }) {
-  const isAuthenticated = localStorage.getItem('authToken');
-  return isAuthenticated ? element : <Navigate to="/" replace />;
+  return element; // Siempre permite el acceso a las rutas sin validación de autenticación.
 }
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/login" element={<Login />} />
-
-        {/* Ruta para Register */}
+        {/* Eliminamos las rutas de login */}
+        <Route path="/" element={<Navigate to="/dashboard" replace />} /> {/* Redirige al dashboard directamente */}
+        
+        {/* Ruta para Register (por si alguien necesita registrarse) */}
         <Route path="/register" element={<Register />} />
 
-        {/* Ruta para Dashboard */}
+        {/* Ruta para el dashboard, ya no es necesario verificar autenticación */}
         <Route
           path="/dashboard"
           element={
@@ -41,15 +46,17 @@ function App() {
           }
         />
 
-        {/* Ruta para CLIENTES en el Dashboard */}
+        {/* Rutas para el carrito y las opciones del Dashboard */}
+        <Route path="dashboard/carrito" element={<Carrito />} />
+
         <Route
-          path="/dashboard/CLIENTES"
+          path="/dashboard/categorias"
           element={
             <ProtectedRoute
               element={
                 <>
                   <DashboardHeader />
-                  <Clientes /> {/* Aquí se muestra el componente Clientes */}
+                  <Categorias />
                   <DashboardFooter />
                 </>
               }
@@ -57,6 +64,82 @@ function App() {
           }
         />
 
+        <Route
+          path="/dashboard/productos"
+          element={
+            <ProtectedRoute
+              element={
+                <>
+                  <DashboardHeader />
+                  <Productos />
+                  <DashboardFooter />
+                </>
+              }
+            />
+          }
+        />
+
+        <Route
+          path="/dashboard/ofertas"
+          element={
+            <ProtectedRoute
+              element={
+                <>
+                  <DashboardHeader />
+                  <Ofertas />
+                  <DashboardFooter />
+                </>
+              }
+            />
+          }
+        />
+
+        <Route
+          path="/dashboard/pedidos"
+          element={
+            <ProtectedRoute
+              element={
+                <>
+                  <DashboardHeader />
+                  <Pedidos />
+                  <DashboardFooter />
+                </>
+              }
+            />
+          }
+        />
+
+        <Route
+          path="/dashboard/clientes"
+          element={
+            <ProtectedRoute
+              element={
+                <>
+                  <DashboardHeader />
+                  <Clientes />
+                  <DashboardFooter />
+                </>
+              }
+            />
+          }
+        />
+
+        <Route
+          path="/dashboard/aportes"
+          element={
+            <ProtectedRoute
+              element={
+                <>
+                  <DashboardHeader />
+                  <Aportes />
+                  <DashboardFooter />
+                </>
+              }
+            />
+          }
+        />
+
+        {/* Ruta para las demás opciones dinámicas */}
         <Route path="/dashboard/:opcion" element={
           <ProtectedRoute
             element={

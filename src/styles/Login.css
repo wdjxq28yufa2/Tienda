@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(135deg, #005B87, #0069A5); /* Colores de la universidad */
+  background: linear-gradient(135deg, #21991c, #2ec720); /* Colores de la universidad */
   font-family: 'Roboto', sans-serif;
 }
 
@@ -27,7 +27,7 @@
   margin-bottom: 30px;
   font-size: 28px;
   font-weight: 600;
-  color: #005B87; /* Color institucional más fuerte */
+  color: #33bb18; /* Color institucional más fuerte */
   text-transform: uppercase;
 }
 
@@ -67,7 +67,7 @@
 .login-form button {
   width: 100%;
   padding: 14px;
-  background-color: #005B87;
+  background-color: #25bd2d;
   border: none;
   border-radius: 8px;
   color: white;
@@ -78,7 +78,7 @@
 
 /* Efecto hover en el botón */
 .login-form button:hover {
-  background-color: #004973;
+  background-color: #2bc716;
   transform: translateY(-3px);
 }
 
@@ -87,7 +87,7 @@
   display: block;
   margin-top: 15px;
   font-size: 14px;
-  color: #0069A5;
+  color: #10a302;
   text-decoration: none;
 }
 
@@ -105,14 +105,14 @@
 
 .register-link button {
   background-color: transparent;
-  color: #0069A5;
+  color: #14db45;
   border: none;
   cursor: pointer;
   text-decoration: underline;
 }
 
 .register-link button:hover {
-  color: #004973;
+  color: #21c03c;
 }
 
 /* Estilos para el mensaje de error */

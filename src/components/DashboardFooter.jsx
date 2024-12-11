@@ -4,7 +4,7 @@ import '../styles/DashboardFooter.css';
 
 function DashboardFooter() {
   const [showText, setShowText] = useState(false); // Estado para manejar la visibilidad del texto
-  const fullText = "Seguimos siendo tu cooperativa de confianza";
+  const fullText = "Encontrarás lo que más te gusta y al mejor precio";
 
   useEffect(() => {
     // Hacemos que el texto aparezca después de un pequeño retraso
