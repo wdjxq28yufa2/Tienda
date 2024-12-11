@@ -9,7 +9,7 @@ import fs from 'fs'; // Importamos fs para crear directorios
 config();  
 
 const app = express();
-const port = process.env.PORT || 5000; // El puerto puede venir desde las variables de entorno
+const port = process.env.PORT || 8080; // El puerto puede venir desde las variables de entorno
 
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
