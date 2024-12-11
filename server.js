@@ -41,9 +41,12 @@ db.connect((err) => {
 app.use(express.static(path.join(__dirname, 'dist'))); // Asegúrate de que 'dist' es la carpeta generada
 
 // Enviar el archivo HTML de React cuando se accede a la raíz
-app.get('/dashboard', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html')); // Esto es importante para que React Router maneje las rutas
 });
+
+
+
 
 // Iniciar el servidor
 app.listen(port, '0.0.0.0', () => {  // Escuchar en todas las interfaces de red
