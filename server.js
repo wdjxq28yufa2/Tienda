@@ -1,21 +1,15 @@
-// Importar dependencias necesarias
-
 import express from 'express';
 import mysql from 'mysql2'; 
-import bcrypt from 'bcryptjs'; 
 import cors from 'cors'; 
-import path from 'path'; // Importamos path
-
+import path from 'path'; 
+import { config } from 'dotenv'; // Para cargar las variables de entorno
 import fs from 'fs'; // Importamos fs para crear directorios
 
+// Cargar las variables de entorno desde el archivo .env
+config();  
 
-import { realizarScraping } from './scraping.js';
-
-
-
-// Crear una instancia de express
 const app = express();
-const port = 24311; // Puerto donde se ejecutará el servidor
+const port = process.env.PORT || 5000; // El puerto puede venir desde las variables de entorno
 
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
@@ -23,12 +17,13 @@ const __dirname = path.dirname(new URL(import.meta.url).pathname);
 app.use(express.json()); // Para parsear el cuerpo de las peticiones como JSON
 app.use(cors()); // Habilitar CORS si es necesario
 
-// Configuración de la base de datos
+// Configuración de la base de datos utilizando las variables de entorno
 const db = mysql.createConnection({
-  host: 'junction.proxy.rlwy.net',
-  user: 'root', 
-  password: 'LkCuPoSuOppziKvSYyRUJZbDfLPngPFA',
-  database: 'railway'
+  host: process.env.DB_HOST,  // Usar la variable de entorno DB_HOST
+  user: process.env.DB_USERNAME,  // Usar la variable de entorno DB_USERNAME
+  password: process.env.DB_PASSWORD,  // Usar la variable de entorno DB_PASSWORD
+  database: process.env.DB_DATABASE,  // Usar la variable de entorno DB_DATABASE
+  port: process.env.DB_PORT || 3306  // Usar el puerto de la base de datos
 });
 
 // Verificar la conexión a la base de datos
@@ -39,8 +34,6 @@ db.connect((err) => {
   }
   console.log('Conexión a la base de datos exitosa');
 });
-
-
 
 // Iniciar el servidor
 app.listen(port, () => {
